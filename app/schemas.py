@@ -55,6 +55,7 @@ class RequestOut(BaseModel):
     ride_id:int
     class Config:
         orm_mode = True
+        
 class RideOut(BaseModel):
     ride_id:int
     user_id:int

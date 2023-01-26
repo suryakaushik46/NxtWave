@@ -23,7 +23,7 @@ def addRequest(request:schemas.Request,db:Session=Depends(get_db)):
     db.add(new_request)
     db.commit()
     db.refresh(new_request)
-    return f'sucessfully added request {new_request.request_id}'
+    return new_request
 
 
 #shows all requesting of the user with out data validation
@@ -83,7 +83,7 @@ def get_all_matching_rides(request_id:int,db:Session=Depends(get_db)):
 
 
 #to approve the ride
-@router.get("/match_request/{request_id}/apply/{ride_id}",status_code=status.HTTP_200_OK)
+@router.patch("/match_request/{request_id}/apply/{ride_id}",status_code=status.HTTP_200_OK)
 def apply_ride(request_id:int,ride_id:int,db:Session=Depends(get_db)):
     #adding filters
     request_filters=[models.Request.request_id == request_id]
@@ -95,7 +95,7 @@ def apply_ride(request_id:int,ride_id:int,db:Session=Depends(get_db)):
     
     #if not able to carry
     if not ride_data:
-        return "the rider is not allowed exceeded maximum qunatity"
+        return {'message':"the rider is not allowed exceeded maximum qunatity"}
 
     #if the rider can carry keeing status as active
     db.query(models.Request).filter(*request_filters).update({'status':'active'},synchronize_session=False)
@@ -105,8 +105,8 @@ def apply_ride(request_id:int,ride_id:int,db:Session=Depends(get_db)):
     
     #here we update the asset qunatity of the ride as some case he can take to requests
     db.query(models.Ride).filter(models.Ride.ride_id==ride_id).update({'asset_qunatity':ride_data.asset_qunatity-no_of_assests},synchronize_session=False)
-    
+
     #getting name of rider from users table
     user_data=db.query(models.User).filter(models.User.user_id==ride_data.user_id).first()
     db.commit()
-    return f'your rider is {user_data.name}'
+    return {"message":f'your rider is {user_data.name}'}

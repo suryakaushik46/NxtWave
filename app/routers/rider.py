@@ -17,5 +17,5 @@ def addRide(ride:schemas.Ride,db:Session=Depends(get_db)):
     db.add(new_ride)
     db.commit()
     db.refresh(new_ride)
-    return f'sucessfully added the ride {new_ride.ride_id}'
+    return new_ride
     

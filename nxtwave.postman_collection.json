@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "88b079eb-3db9-4226-8174-6e1cc8b7f127",
+		"name": "nxtwave",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"loki\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/add_user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"add_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_ride",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\":1,\n    \"from_address\":\"hydrebad\",\n    \"to_address\":\"kurnool\",\n    \"date_and_time\":\"2019-05-21T17:29:00\",\n    \"travel_medium\":\"car\",\n    \"asset_qunatity\":2\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/rider/add_ride",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"rider",
+						"add_ride"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\":2,\n    \"from_address\":\"hydrebad\",\n    \"to_address\":\"kurnool\",\n    \"date_and_time\":\"2019-05-21 17:29:00\",\n    \"no_of_assest\":2,\n    \"asset_type\":\"laptop\",\n    \"asset_sensitivity\":\"highly_sensitive\",\n    \"whom_to_deliver\":\"mourya\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/requester/add_request",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"requester",
+						"add_request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view all requests",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "match rides",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "approve_ride",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/requester/match_request/7/apply/9",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"requester",
+						"match_request",
+						"7",
+						"apply",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

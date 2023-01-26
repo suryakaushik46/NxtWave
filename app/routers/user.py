@@ -17,4 +17,4 @@ def addUser(user:schemas.User,db:Session=Depends(get_db)):
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    return  f'added user {new_user.name}'
+    return  new_user
